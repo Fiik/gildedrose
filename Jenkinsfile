@@ -1,5 +1,3 @@
-10:57
-
 node {
     stage ('Preparation'){
     git 'https://github.com/Fiik/gildedrose.git'
