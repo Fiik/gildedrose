@@ -9,11 +9,7 @@ node {
    }
    stage('Build') {
       // Run the maven build
-      if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-      } else {
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
-      }
+     sh ‘docker run -i --rm --name my-maven-project -v “$PWD”:/usr/src/mymaven -w /usr/src/mymaven maven:3-jdk-8 mvn install’
    }
    stage('Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
